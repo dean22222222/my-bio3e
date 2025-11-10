@@ -99,8 +99,6 @@
   <section class="contact">
     <h2>Get in Touch 📧</h2>
     <p>Send me a message directly — I’ll get it in my email!</p>
-
-    <!-- Replace YOUR_FORM_ID below after signing up -->
     <form action="https://formspree.io/f/xzzypwkv" method="POST">
       <input type="text" name="name" placeholder="Your Name" required><br>
       <input type="email" name="email" placeholder="Your Email" required><br>
