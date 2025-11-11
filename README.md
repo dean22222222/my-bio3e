@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dean Sherrill 🍕 - Chat & About</title>
+  <title>About Dean Sherrill 🍕</title>
   <style>
     body {
       font-family: "Poppins", sans-serif;
@@ -10,6 +10,7 @@
       background: linear-gradient(135deg, #ffb347, #ffcc33);
       color: #333;
       text-align: center;
+      cursor: url('https://cur.cursors-4u.net/food/foo-3/foo283.cur'), auto;
       overflow-x: hidden;
     }
 
@@ -28,7 +29,7 @@
       padding: 40px 20px;
     }
 
-    .about, .contact, .login-box {
+    .about, .contact {
       background: rgba(255, 255, 255, 0.85);
       border-radius: 12px;
       display: inline-block;
@@ -83,7 +84,19 @@
       100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
-    /* Chat & Login */
+    /* Chat container */
+    #talkjs-container {
+      width: 350px;
+      height: 500px;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      display: none; /* hidden initially */
+      z-index: 1000;
+    }
+
     .chat-button {
       position: fixed;
       bottom: 20px;
@@ -97,81 +110,12 @@
       font-size: 28px;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      z-index: 1000;
+      z-index: 1001;
     }
 
-    .chat-button:hover { background: #ff4040; }
-
-    .chat-box, .login-box {
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      width: 320px;
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-      z-index: 1000;
+    .chat-button:hover {
+      background: #ff4040;
     }
-
-    .chat-header, .login-header {
-      background: #ffb347;
-      padding: 12px;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .chat-content {
-      padding: 15px;
-      flex: 1;
-      max-height: 350px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .message {
-      padding: 8px 12px;
-      border-radius: 20px;
-      max-width: 75%;
-      font-size: 0.9em;
-      line-height: 1.3;
-    }
-
-    .message.user { background: #ff6b6b; color: white; align-self: flex-end; }
-    .message.dean { background: #ffcc33; color: #333; align-self: flex-start; }
-
-    .chat-form, .login-form {
-      display: flex;
-      flex-direction: column;
-      padding: 10px;
-      gap: 5px;
-    }
-
-    .chat-form input, .chat-form textarea,
-    .login-form input {
-      width: 100%;
-      padding: 8px;
-      border-radius: 8px;
-      border: 2px solid #ffb347;
-      font-size: 0.9em;
-    }
-
-    .chat-form button, .login-form button {
-      background: #ff6b6b;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 6px;
-      color: white;
-      font-size: 0.9em;
-      cursor: pointer;
-    }
-
-    .chat-form button:hover, .login-form button:hover { background: #ff4040; }
   </style>
 </head>
 <body>
@@ -180,15 +124,15 @@
     <p>Welcome to my slice of the internet 🍕</p>
   </header>
 
-  <!-- About Me Section -->
   <section class="about">
     <h2>About Me 🎧</h2>
-    <p>I love coding and coming up with creative ideas — there’s just something so cool about turning a thought into something real. I actually started coding when I was 13, and ever since then, I’ve been hooked. I go to school right now, so I’m always balancing classes with my hobbies, but I like staying busy and learning new things.</p>
-    <p>When I’m not glued to my laptop, I’m usually texting my family or hanging out with them. They always know how to make me laugh and keep things fun. I also love playing Rec Room — it’s such a fun way to chill, meet people, and just mess around in different games.</p>
-    <p>Music is a huge part of my life too — I’m pretty much always listening to something, whether I’m working, relaxing, or just vibing. Overall, I’m all about having fun, staying creative, and keeping those good vibes going wherever I can.</p>
+    <p> I love coding and coming up with creative ideas — there’s just something so cool about turning a thought into something real. I actually started coding when I was 13, and ever since then, I’ve been hooked. I go to school right now, so I’m always balancing classes with my hobbies, but I like staying busy and learning new things.
+
+    When I’m not glued to my laptop, I’m usually texting my family or hanging out with them. They always know how to make me laugh and keep things fun. I also love playing Rec Room — it’s such a fun way to chill, meet people, and just mess around in different games.
+
+    Music is a huge part of my life too — I’m pretty much always listening to something, whether I’m working, relaxing, or just vibing. Overall, I’m all about having fun, staying creative, and keeping those good vibes going wherever I can.</p>
   </section>
 
-  <!-- Contact Section -->
   <section class="contact">
     <h2>Get in Touch 📧</h2>
     <p>Send me a message directly — I’ll get it in my email!</p>
@@ -204,7 +148,7 @@
     <p>© 2025 Dean Sherrill | Made with ❤️ & 🍕</p>
   </footer>
 
-  <!-- Floating Pizzas -->
+  <!-- Floating pizzas -->
   <script>
     const pizzaCount = 10;
     for (let i = 0; i < pizzaCount; i++) {
@@ -218,78 +162,42 @@
     }
   </script>
 
-  <!-- Chat / Login -->
-  <button class="chat-button">💬</button>
+  <!-- Chat button and container -->
+  <button class="chat-button" id="chatBtn">💬</button>
+  <div id="talkjs-container"></div>
 
-  <!-- Login Box -->
-  <div class="login-box" id="loginBox">
-    <div class="login-header">Login to Chat 🍕</div>
-    <form class="login-form" id="loginForm">
-      <input type="text" id="loginName" placeholder="Your Name" required>
-      <input type="email" id="loginEmail" placeholder="Your Email" required>
-      <button type="submit">Login 🚀</button>
-    </form>
-  </div>
-
-  <!-- Chat Box -->
-  <div class="chat-box" id="chatBox">
-    <div class="chat-header">Chat with Dean 🍕</div>
-    <div class="chat-content" id="chatContent">
-      <div class="message dean">Hey there! 👋 Got a question or just wanna say hi?</div>
-    </div>
-    <form class="chat-form" id="chatForm">
-      <textarea id="userMessage" rows="2" placeholder="Your Message..." required></textarea>
-      <button type="submit">Send 🚀</button>
-    </form>
-  </div>
-
+  <!-- TalkJS -->
+  <script src="https://cdn.talkjs.com/talk.js"></script>
   <script>
-    const chatButton = document.querySelector('.chat-button');
-    const chatBox = document.getElementById('chatBox');
-    const loginBox = document.getElementById('loginBox');
-    const chatContent = document.getElementById('chatContent');
-    const chatForm = document.getElementById('chatForm');
-    let userName = '';
-    let userEmail = '';
+    const chatBtn = document.getElementById('chatBtn');
+    const chatContainer = document.getElementById('talkjs-container');
 
-    chatButton.addEventListener('click', () => {
-      if (!userName) {
-        loginBox.style.display = loginBox.style.display === 'flex' ? 'none' : 'flex';
+    chatBtn.addEventListener('click', () => {
+      if(chatContainer.style.display === 'none'){
+        chatContainer.style.display = 'block';
       } else {
-        chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
+        chatContainer.style.display = 'none';
       }
     });
 
-    // Login handler
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      userName = document.getElementById('loginName').value;
-      userEmail = document.getElementById('loginEmail').value;
-      loginBox.style.display = 'none';
-      chatBox.style.display = 'flex';
-      addMessage(`Welcome, ${userName}! 🎉`, 'dean');
-    });
+    Talk.ready.then(function() {
+      const me = new Talk.User({
+        id: "dean_sherrill",
+        name: "Dean Sherrill",
+        email: "dean@example.com",
+        photoUrl: "https://i.pravatar.cc/150?img=3",
+      });
 
-    function addMessage(text, sender) {
-      const message = document.createElement('div');
-      message.classList.add('message', sender);
-      message.textContent = text;
-      chatContent.appendChild(message);
-      chatContent.scrollTop = chatContent.scrollHeight;
-    }
+      const session = new Talk.Session({
+        appId: "tcN8OSbh", // replace with your TalkJS App ID
+        me: me
+      });
 
-    // Chat form
-    chatForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const message = document.getElementById('userMessage').value;
-      if (!message) return;
-      addMessage(message, 'user');
-      document.getElementById('userMessage').value = '';
+      const conversation = session.getOrCreateConversation("public_chat");
+      conversation.setParticipant(me);
 
-      // Optional: auto-reply
-      setTimeout(() => {
-        addMessage("Thanks for your message! 🍕 I'll get back to you soon.", "dean");
-      }, 1000);
+      const chatbox = session.createChatbox(conversation);
+      chatbox.mount(chatContainer);
     });
   </script>
 </body>
