@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -88,11 +89,33 @@
       width: 350px;
       height: 500px;
       position: fixed;
-      bottom: 20px;
+      bottom: 70px;
       right: 20px;
       border-radius: 12px;
       overflow: hidden;
       z-index: 1000;
+      display: none; /* start hidden */
+    }
+
+    #chat-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff6b6b;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 1001;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+    }
+
+    #chat-toggle:hover {
+      transform: scale(1.1);
     }
   </style>
 </head>
@@ -137,8 +160,18 @@
 
   <!-- TalkJS Chat -->
   <div id="talkjs-container"></div>
+  <button id="chat-toggle">💬</button>
   <script src="https://cdn.talkjs.com/talk.js"></script>
   <script>
+    let chatVisible = false;
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatContainer = document.getElementById('talkjs-container');
+
+    chatToggle.addEventListener('click', () => {
+      chatVisible = !chatVisible;
+      chatContainer.style.display = chatVisible ? 'block' : 'none';
+    });
+
     Talk.ready.then(function() {
       const me = new Talk.User({
         id: "dean_sherrill",
