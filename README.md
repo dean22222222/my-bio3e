@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Dean Sherrill 🍕</title>
+  <title>Dean Sherrill 🍕 - Chat & About</title>
   <style>
     body {
       font-family: "Poppins", sans-serif;
@@ -10,7 +10,6 @@
       background: linear-gradient(135deg, #ffb347, #ffcc33);
       color: #333;
       text-align: center;
-      cursor: url('https://cur.cursors-4u.net/food/foo-3/foo283.cur'), auto;
       overflow-x: hidden;
     }
 
@@ -29,7 +28,7 @@
       padding: 40px 20px;
     }
 
-    .about, .contact {
+    .about, .contact, .login-box {
       background: rgba(255, 255, 255, 0.85);
       border-radius: 12px;
       display: inline-block;
@@ -84,7 +83,7 @@
       100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
-    /* Chat styles */
+    /* Chat & Login */
     .chat-button {
       position: fixed;
       bottom: 20px;
@@ -97,23 +96,19 @@
       height: 60px;
       font-size: 28px;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s ease, background 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       z-index: 1000;
     }
 
-    .chat-button:hover {
-      background: #ff4040;
-      transform: scale(1.1);
-    }
+    .chat-button:hover { background: #ff4040; }
 
-    .chat-box {
+    .chat-box, .login-box {
       position: fixed;
       bottom: 90px;
       right: 20px;
       background: rgba(255, 255, 255, 0.95);
       border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       width: 320px;
       display: none;
       flex-direction: column;
@@ -121,11 +116,12 @@
       z-index: 1000;
     }
 
-    .chat-header {
+    .chat-header, .login-header {
       background: #ffb347;
       padding: 12px;
       color: white;
       font-weight: bold;
+      text-align: center;
     }
 
     .chat-content {
@@ -146,26 +142,18 @@
       line-height: 1.3;
     }
 
-    .message.user {
-      background: #ff6b6b;
-      color: white;
-      align-self: flex-end;
-    }
+    .message.user { background: #ff6b6b; color: white; align-self: flex-end; }
+    .message.dean { background: #ffcc33; color: #333; align-self: flex-start; }
 
-    .message.dean {
-      background: #ffcc33;
-      color: #333;
-      align-self: flex-start;
-    }
-
-    .chat-form {
+    .chat-form, .login-form {
       display: flex;
       flex-direction: column;
       padding: 10px;
       gap: 5px;
     }
 
-    .chat-form input, .chat-form textarea {
+    .chat-form input, .chat-form textarea,
+    .login-form input {
       width: 100%;
       padding: 8px;
       border-radius: 8px;
@@ -173,7 +161,7 @@
       font-size: 0.9em;
     }
 
-    .chat-form button {
+    .chat-form button, .login-form button {
       background: #ff6b6b;
       border: none;
       padding: 8px 15px;
@@ -183,9 +171,7 @@
       cursor: pointer;
     }
 
-    .chat-form button:hover {
-      background: #ff4040;
-    }
+    .chat-form button:hover, .login-form button:hover { background: #ff4040; }
   </style>
 </head>
 <body>
@@ -197,15 +183,9 @@
   <!-- About Me Section -->
   <section class="about">
     <h2>About Me 🎧</h2>
-    <p>
-      I love coding and coming up with creative ideas — there’s just something so cool about turning a thought into something real. I actually started coding when I was 13, and ever since then, I’ve been hooked. I go to school right now, so I’m always balancing classes with my hobbies, but I like staying busy and learning new things.
-    </p>
-    <p>
-      When I’m not glued to my laptop, I’m usually texting my family or hanging out with them. They always know how to make me laugh and keep things fun. I also love playing Rec Room — it’s such a fun way to chill, meet people, and just mess around in different games.
-    </p>
-    <p>
-      Music is a huge part of my life too — I’m pretty much always listening to something, whether I’m working, relaxing, or just vibing. Overall, I’m all about having fun, staying creative, and keeping those good vibes going wherever I can.
-    </p>
+    <p>I love coding and coming up with creative ideas — there’s just something so cool about turning a thought into something real. I actually started coding when I was 13, and ever since then, I’ve been hooked. I go to school right now, so I’m always balancing classes with my hobbies, but I like staying busy and learning new things.</p>
+    <p>When I’m not glued to my laptop, I’m usually texting my family or hanging out with them. They always know how to make me laugh and keep things fun. I also love playing Rec Room — it’s such a fun way to chill, meet people, and just mess around in different games.</p>
+    <p>Music is a huge part of my life too — I’m pretty much always listening to something, whether I’m working, relaxing, or just vibing. Overall, I’m all about having fun, staying creative, and keeping those good vibes going wherever I can.</p>
   </section>
 
   <!-- Contact Section -->
@@ -238,18 +218,27 @@
     }
   </script>
 
-  <!-- Live Chat -->
+  <!-- Chat / Login -->
   <button class="chat-button">💬</button>
 
+  <!-- Login Box -->
+  <div class="login-box" id="loginBox">
+    <div class="login-header">Login to Chat 🍕</div>
+    <form class="login-form" id="loginForm">
+      <input type="text" id="loginName" placeholder="Your Name" required>
+      <input type="email" id="loginEmail" placeholder="Your Email" required>
+      <button type="submit">Login 🚀</button>
+    </form>
+  </div>
+
+  <!-- Chat Box -->
   <div class="chat-box" id="chatBox">
     <div class="chat-header">Chat with Dean 🍕</div>
     <div class="chat-content" id="chatContent">
       <div class="message dean">Hey there! 👋 Got a question or just wanna say hi?</div>
     </div>
-    <form class="chat-form" id="chatForm" action="https://formspree.io/f/xzzypwkv" method="POST">
-      <input type="text" name="name" id="userName" placeholder="Your Name" required>
-      <input type="email" name="email" id="userEmail" placeholder="Your Email" required>
-      <textarea name="message" id="userMessage" rows="2" placeholder="Your Message..." required></textarea>
+    <form class="chat-form" id="chatForm">
+      <textarea id="userMessage" rows="2" placeholder="Your Message..." required></textarea>
       <button type="submit">Send 🚀</button>
     </form>
   </div>
@@ -257,11 +246,28 @@
   <script>
     const chatButton = document.querySelector('.chat-button');
     const chatBox = document.getElementById('chatBox');
+    const loginBox = document.getElementById('loginBox');
     const chatContent = document.getElementById('chatContent');
     const chatForm = document.getElementById('chatForm');
+    let userName = '';
+    let userEmail = '';
 
     chatButton.addEventListener('click', () => {
-      chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
+      if (!userName) {
+        loginBox.style.display = loginBox.style.display === 'flex' ? 'none' : 'flex';
+      } else {
+        chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
+      }
+    });
+
+    // Login handler
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      userName = document.getElementById('loginName').value;
+      userEmail = document.getElementById('loginEmail').value;
+      loginBox.style.display = 'none';
+      chatBox.style.display = 'flex';
+      addMessage(`Welcome, ${userName}! 🎉`, 'dean');
     });
 
     function addMessage(text, sender) {
@@ -272,30 +278,18 @@
       chatContent.scrollTop = chatContent.scrollHeight;
     }
 
+    // Chat form
     chatForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      const name = document.getElementById('userName').value;
-      const email = document.getElementById('userEmail').value;
       const message = document.getElementById('userMessage').value;
-
-      // Show user's message instantly
+      if (!message) return;
       addMessage(message, 'user');
+      document.getElementById('userMessage').value = '';
 
-      // Send to Formspree
-      fetch(chatForm.action, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(chatForm)
-      }).then(response => {
-        if(response.ok) {
-          addMessage("Thanks! I got your message. 🍕", "dean");
-          chatForm.reset();
-        } else {
-          addMessage("Oops, something went wrong. Try again!", "dean");
-        }
-      }).catch(() => {
-        addMessage("Oops, something went wrong. Try again!", "dean");
-      });
+      // Optional: auto-reply
+      setTimeout(() => {
+        addMessage("Thanks for your message! 🍕 I'll get back to you soon.", "dean");
+      }, 1000);
     });
   </script>
 </body>
