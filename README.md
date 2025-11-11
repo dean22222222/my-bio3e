@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -37,8 +36,6 @@
       padding: 30px;
       margin-top: 20px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      max-width: 800px;
-      text-align: left;
     }
 
     input, textarea {
@@ -84,39 +81,6 @@
       0% { transform: translateY(-60px) rotate(0deg); opacity: 1; }
       100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
-
-    #talkjs-container {
-      width: 350px;
-      height: 500px;
-      position: fixed;
-      bottom: 70px;
-      right: 20px;
-      border-radius: 12px;
-      overflow: hidden;
-      z-index: 1000;
-      display: none; /* start hidden */
-    }
-
-    #chat-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #ff6b6b;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 30px;
-      cursor: pointer;
-      z-index: 1001;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: transform 0.2s ease;
-    }
-
-    #chat-toggle:hover {
-      transform: scale(1.1);
-    }
   </style>
 </head>
 <body>
@@ -127,12 +91,16 @@
 
   <section class="about">
     <h2>About Me 🎧</h2>
-    <p> I love coding and coming up with creative ideas — there’s just something so cool about turning a thought into something real. I started coding at 13 and have been hooked ever since. I balance school with hobbies, but I love staying busy and learning new things.</p>
-    <p>When I’m not coding, I’m usually texting my family or hanging out with them. I also love playing Rec Room and listening to music. Overall, I’m all about fun, creativity, and good vibes.</p>
+    <p> I love coding and coming up with creative ideas — there’s just something so cool about turning a thought into something real. I actually started coding when I was 13, and ever since then, I’ve been hooked. I go to school right now, so I’m always balancing classes with my hobbies, but I like staying busy and learning new things.
+
+When I’m not glued to my laptop, I’m usually texting my family or hanging out with them. They always know how to make me laugh and keep things fun. I also love playing Rec Room — it’s such a fun way to chill, meet people, and just mess around in different games.
+
+Music is a huge part of my life too — I’m pretty much always listening to something, whether I’m working, relaxing, or just vibing. Overall, I’m all about having fun, staying creative, and keeping those good vibes going wherever I can.</p>
   </section>
 
   <section class="contact">
     <h2>Get in Touch 📧</h2>
+    <p>Send me a message directly — I’ll get it in my email!</p>
     <form action="https://formspree.io/f/xzzypwkv" method="POST">
       <input type="text" name="name" placeholder="Your Name" required><br>
       <input type="email" name="email" placeholder="Your Email" required><br>
@@ -145,9 +113,9 @@
     <p>© 2025 Dean Sherrill | Made with ❤️ & 🍕</p>
   </footer>
 
-  <!-- Floating pizzas -->
   <script>
-    for (let i = 0; i < 10; i++) {
+    const pizzaCount = 10;
+    for (let i = 0; i < pizzaCount; i++) {
       const pizza = document.createElement('div');
       pizza.classList.add('pizza');
       pizza.textContent = '🍕';
@@ -156,41 +124,6 @@
       pizza.style.fontSize = 20 + Math.random() * 40 + 'px';
       document.body.appendChild(pizza);
     }
-  </script>
-
-  <!-- TalkJS Chat -->
-  <div id="talkjs-container"></div>
-  <button id="chat-toggle">💬</button>
-  <script src="https://cdn.talkjs.com/talk.js"></script>
-  <script>
-    let chatVisible = false;
-    const chatToggle = document.getElementById('chat-toggle');
-    const chatContainer = document.getElementById('talkjs-container');
-
-    chatToggle.addEventListener('click', () => {
-      chatVisible = !chatVisible;
-      chatContainer.style.display = chatVisible ? 'block' : 'none';
-    });
-
-    Talk.ready.then(function() {
-      const me = new Talk.User({
-        id: "dean_sherrill",
-        name: "Dean Sherrill",
-        email: "dean@example.com",
-        photoUrl: "https://i.pravatar.cc/150?img=3"
-      });
-
-      const session = new Talk.Session({
-        appId: "tcN8OSbh", 
-        me: me
-      });
-
-      const conversation = session.getOrCreateConversation("public_chat");
-      conversation.setParticipant(me);
-
-      const chatbox = session.createChatbox(conversation);
-      chatbox.mount(document.getElementById("talkjs-container"));
-    });
   </script>
 </body>
 </html>
