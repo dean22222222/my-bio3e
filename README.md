@@ -148,7 +148,7 @@
       });
 
       const session = new Talk.Session({
-        appId: "tcN8OSbh", // YOUR App ID here
+        appId: "tcN8OSbh", 
         me: me
       });
 
