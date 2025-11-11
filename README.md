@@ -91,11 +91,13 @@
 
   <section class="about">
     <h2>About Me 🎧</h2>
-    <p> I love coding and coming up with creative ideas — there’s just something so cool about turning a thought into something real. I actually started coding when I was 13, and ever since then, I’ve been hooked. I go to school right now, so I’m always balancing classes with my hobbies, but I like staying busy and learning new things.
+    <p> I’ve been into coding since I was 13 — there’s just something awesome about turning an idea into something real. I’m always tinkering with projects, learning new stuff, and keeping myself busy.
 
-When I’m not glued to my laptop, I’m usually texting my family or hanging out with them. They always know how to make me laugh and keep things fun. I also love playing Rec Room — it’s such a fun way to chill, meet people, and just mess around in different games.
+When I’m not at my laptop, I’m usually hanging out with my family or texting them — they always know how to make me laugh. I also love playing Rec Room; it’s a chill way to meet people, mess around in games, and just have fun.
 
-Music is a huge part of my life too — I’m pretty much always listening to something, whether I’m working, relaxing, or just vibing. Overall, I’m all about having fun, staying creative, and keeping those good vibes going wherever I can.</p>
+Music is basically my constant companion — I’m always listening, whether I’m working, relaxing, or just vibing. I’m all about creativity, good vibes, and making the most of life.
+
+Shout me a message if you want to hang, chat, or just share some good vibes!</p>
   </section>
 
   <section class="contact">
