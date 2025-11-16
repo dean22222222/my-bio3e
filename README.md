@@ -31,6 +31,7 @@
       padding: 30px;
       margin-top: 20px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 700px;
     }
 
     input, textarea {
@@ -104,15 +105,23 @@
   <header>
     <h1>Hey, I'm Dean Sherrill 👋</h1>
     <p>Welcome to my slice of the internet 🍕</p>
-
     <!-- LOGIN BUTTON -->
     <button onclick="openLogin()">Login 🔐</button>
     <button onclick="logout()" id="logoutBtn" style="display:none;">Logout 🚪</button>
   </header>
 
+  <!-- FULL ABOUT SECTION RESTORED -->
   <section class="about">
     <h2>About Me 🎧</h2>
-    <p> I’ve been into coding since I was 13 — ... (your text stays the same) </p>
+    <p>
+      I’ve been into coding since I was 13 — there’s just something awesome about turning an idea into something real. I’m always tinkering with projects, learning new stuff, and keeping myself busy.
+      <br><br>
+      When I’m not at my laptop, I’m usually hanging out with my family or texting them — they always know how to make me laugh. I also love playing Rec Room; it’s a chill way to meet people, mess around in games, and just have fun.
+      <br><br>
+      Music is basically my constant companion — I’m always listening, whether I’m working, relaxing, or just vibing. I’m all about creativity, good vibes, and making the most of life.
+      <br><br>
+      Shout me a message if you want to hang, chat, or just share some good vibes!
+    </p>
   </section>
 
   <section class="contact">
@@ -126,7 +135,7 @@
     </form>
   </section>
 
-  <!-- FRIENDS & FAMILY SECTION (HIDDEN UNTIL LOGGED IN) -->
+  <!-- FRIENDS & FAMILY SECTION (HIDDEN UNTIL LOGIN) -->
   <section class="friends" id="friendsSection" style="display:none;">
     <h2>Friends & Family ❤️</h2>
     <p>Welcome! Since you're logged in, you can see this special section just for people I trust 😄</p>
@@ -151,13 +160,8 @@
     const correctUser = "family";   // <-- change this
     const correctPass = "pizza123"; // <-- change this
 
-    function openLogin() {
-      document.getElementById("loginModal").style.display = "block";
-    }
-
-    function closeLogin() {
-      document.getElementById("loginModal").style.display = "none";
-    }
+    function openLogin() { document.getElementById("loginModal").style.display = "block"; }
+    function closeLogin() { document.getElementById("loginModal").style.display = "none"; }
 
     function login() {
       const u = document.getElementById("user").value;
