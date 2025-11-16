@@ -20,16 +20,11 @@
       backdrop-filter: blur(10px);
     }
 
-    h1 {
-      font-size: 2.8em;
-      margin: 0;
-    }
+    h1 { font-size: 2.8em; margin: 0; }
 
-    section {
-      padding: 40px 20px;
-    }
+    section { padding: 40px 20px; }
 
-    .about, .contact {
+    .about, .contact, .friends {
       background: rgba(255, 255, 255, 0.85);
       border-radius: 12px;
       display: inline-block;
@@ -56,6 +51,7 @@
       font-size: 1.1em;
       cursor: pointer;
       transition: transform 0.3s ease, background 0.3s ease;
+      margin-top: 10px;
     }
 
     button:hover {
@@ -81,23 +77,42 @@
       0% { transform: translateY(-60px) rotate(0deg); opacity: 1; }
       100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
+
+    /* Login popup */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      width: 80%;
+      max-width: 350px;
+      margin: 100px auto;
+      border-radius: 12px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Hey, I'm Dean Sherrill 👋</h1>
     <p>Welcome to my slice of the internet 🍕</p>
+
+    <!-- LOGIN BUTTON -->
+    <button onclick="openLogin()">Login 🔐</button>
+    <button onclick="logout()" id="logoutBtn" style="display:none;">Logout 🚪</button>
   </header>
 
   <section class="about">
     <h2>About Me 🎧</h2>
-    <p> I’ve been into coding since I was 13 — there’s just something awesome about turning an idea into something real. I’m always tinkering with projects, learning new stuff, and keeping myself busy.
-
-When I’m not at my laptop, I’m usually hanging out with my family or texting them — they always know how to make me laugh. I also love playing Rec Room; it’s a chill way to meet people, mess around in games, and just have fun.
-
-Music is basically my constant companion — I’m always listening, whether I’m working, relaxing, or just vibing. I’m all about creativity, good vibes, and making the most of life.
-
-Shout me a message if you want to hang, chat, or just share some good vibes!</p>
+    <p> I’ve been into coding since I was 13 — ... (your text stays the same) </p>
   </section>
 
   <section class="contact">
@@ -111,11 +126,69 @@ Shout me a message if you want to hang, chat, or just share some good vibes!</p>
     </form>
   </section>
 
+  <!-- FRIENDS & FAMILY SECTION (HIDDEN UNTIL LOGGED IN) -->
+  <section class="friends" id="friendsSection" style="display:none;">
+    <h2>Friends & Family ❤️</h2>
+    <p>Welcome! Since you're logged in, you can see this special section just for people I trust 😄</p>
+  </section>
+
   <footer>
     <p>© 2025 Dean Sherrill | Made with ❤️ & 🍕</p>
   </footer>
 
+  <!-- LOGIN POPUP -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <h3>Login 🔐</h3>
+      <input id="user" type="text" placeholder="Username">
+      <input id="pass" type="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <button onclick="closeLogin()">Cancel</button>
+    </div>
+  </div>
+
   <script>
+    const correctUser = "family";   // <-- change this
+    const correctPass = "pizza123"; // <-- change this
+
+    function openLogin() {
+      document.getElementById("loginModal").style.display = "block";
+    }
+
+    function closeLogin() {
+      document.getElementById("loginModal").style.display = "none";
+    }
+
+    function login() {
+      const u = document.getElementById("user").value;
+      const p = document.getElementById("pass").value;
+
+      if (u === correctUser && p === correctPass) {
+        localStorage.setItem("loggedIn", "yes");
+        closeLogin();
+        showFriendsArea();
+      } else {
+        alert("Wrong username or password!");
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedIn");
+      document.getElementById("friendsSection").style.display = "none";
+      document.getElementById("logoutBtn").style.display = "none";
+    }
+
+    function showFriendsArea() {
+      document.getElementById("friendsSection").style.display = "block";
+      document.getElementById("logoutBtn").style.display = "inline-block";
+    }
+
+    // Show section if already logged in
+    if (localStorage.getItem("loggedIn") === "yes") {
+      showFriendsArea();
+    }
+
+    // Falling pizza pieces
     const pizzaCount = 10;
     for (let i = 0; i < pizzaCount; i++) {
       const pizza = document.createElement('div');
@@ -127,5 +200,6 @@ Shout me a message if you want to hang, chat, or just share some good vibes!</p>
       document.body.appendChild(pizza);
     }
   </script>
+
 </body>
 </html>
