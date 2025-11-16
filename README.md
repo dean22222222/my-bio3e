@@ -159,6 +159,8 @@
   <script>
     const correctUser = "family";   // <-- change this
     const correctPass = "pizza123"; // <-- change this
+      const correctUser = "DEAN";   // <-- change this
+    const correctPass = "DEAN"; // <-- change this
 
     function openLogin() { document.getElementById("loginModal").style.display = "block"; }
     function closeLogin() { document.getElementById("loginModal").style.display = "none"; }
