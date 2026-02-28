@@ -142,13 +142,12 @@
   </section>
 
   <footer>
-    <p>© 2025 Dean Sherrill | Made with ❤️ & 🍕</p>
+    <p>© 2026 Dean Sherrill | Made with ❤️ & 🍕</p>
   </footer>
 
   <!-- LOGIN POPUP -->
   <div class="modal" id="loginModal">
     <div class="modal-content">
-      <h3>Login 🔐</h3>
       <input id="user" type="text" placeholder="Username">
       <input id="pass" type="password" placeholder="Password">
       <button onclick="login()">Login</button>
