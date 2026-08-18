@@ -12,7 +12,7 @@
       text-align: center;
       cursor: url('https://cur.cursors-4u.net/food/foo-3/foo283.cur'), auto;
       overflow-x: hidden;
-    }
+    } 
 
     header {
       background-color: rgba(255, 255, 255, 0.25);
